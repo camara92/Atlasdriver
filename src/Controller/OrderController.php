@@ -50,10 +50,7 @@ class OrderController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $order->setuserId($this->getUser());
-            // daouda 
-         
-
-            // fin daouda 
+            
             $orderRepository->add($order, true);
             // entitymanagerinterface 
 

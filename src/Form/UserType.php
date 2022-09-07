@@ -8,7 +8,9 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -22,8 +24,22 @@ class UserType extends AbstractType
             // ->add('roles', CollectionType::class)
             //  ->add('password')
             
-            ->add('lastname')
-            ->add('firstname')
+            ->add('lastname', TextType::class, [
+                'label'=>'Votre nom',
+                'constraints'=> new Length([
+                    'min'=>2, 
+                    'max'=>45
+                ]),
+                'attr'=>['placeholder'=>'Merci de saisir votre nom']
+                ])
+            ->add('firstname',TextType::class, [
+                'label'=>'Votre prénom',
+                'constraints'=> new Length([
+                    'min'=>2, 
+                    'max'=>45
+                ]),
+                'attr'=>['placeholder'=>'Merci de saisir votre nom']
+                ])
             ->add('age')
             ->add('adresse')
             ->add('image')

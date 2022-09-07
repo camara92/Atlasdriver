@@ -90,7 +90,7 @@ $(function () {
      document.body.classList.toggle('light-mode');
    });
 
-  //  ----header----soufiane------
+  //  ----header----
 
   var monBtnMenu = document.querySelector(".menuSelector");
   
@@ -117,7 +117,7 @@ var btnOuvert = document.querySelector("body");
 });
 
 
-// daoud a
+// daoud
 
 // Slider(all Slides in a container)
 const slider = document.querySelector(".slider")
