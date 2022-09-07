@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon histoire 
+{% endblock %}
+
+{% block body %}
+	<div class="video-bg">
+		<video width="320" height="240" autoplay loop muted>
+			<source src="https://assets.codepen.io/3364143/7btrrd.mp4" type="video/mp4">
+			Your browser does not support the video tag.
+		</video>
+	</div>
+	<div class="dark-light">
+		<svg viewbox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+			<path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+	</div>
+
+	{# ----header desktop--- #}
+	<div class="app">
+		{% include "partials/header1.html.twig" %}
+		{# ----navbar left--- #}
+		<div class="wrapper">
+			<div class="left-side">
+				<div class="side-wrapper">
+					{% include "partials/navleft.html.twig" %}
+				</div>
+			</div>
+
+			{# -----header mobile ---------- #}
+			
+			<main class="main-container ">
+				{% include "partials/headermobile.html.twig" %}
+
+				<div class="content-wrapper m-4 rounded">
+					<div >
+						<h3 class="side-title">
+							Chauffeur privé
+						</h3>	
+						<img  src="assets/images/photo-apropos.png" height:"400px" alt"a propos" class="rounded">
+					<div class="content-text-context mt-5 ">Riche d’une expérience de 20 années dans le secteurs du VTC, IzyDrive c'est la garentis d'un trajet confortable  et 100% sécursé. 
+						Votre chauffeur expérimenté réalisera l'ensemble de vos trajets avec professionnalisme et discrétion. Des services et avantages qui profitent aux particuliers comme au professionnels, entreprises et sociétés.
+						<br> 
+						Modernes et accessibles, retrouvez nos service sur toutes les plateforme partout en France.
+							
+													
+
+						</div>
+					</div>
+				</div>
+			</main>
+			<div class="overlay-app"></div>
+		</div>
+
+	{% endblock %}
