@@ -23,7 +23,7 @@ class UserController extends AbstractController
             'users' => $userRepository->findAll(),
         ]);
     }
-  
+
     #[Route('/show_user', name: 'show_user')]
     public function showUser(UserRepository $userRepository): Response
     {
@@ -32,23 +32,28 @@ class UserController extends AbstractController
         ]);
     }
 
-   
+
 
     #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
     public function new(Request $request, UserRepository $userRepository, entityManagerInterface $manager): Response
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
+        $notification = ""; 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $userRepository->add($user, true);
             $manager->persist($user);
-            $manager->flush();  
+            $manager->flush();
 
             // ajout cette ligne : 
-            $this->addFlash('success', 
-            "Votre <strong>{$user->getfirstname()}</strong> a bien été crée");
+            $notification = $this->addflash("notifier","votre inscription a bien été prise en compte. Merci pour votre visite." );
+            
+            $this->addFlash(
+                'success',
+                "Votre <strong>{$user->getfirstname()}</strong> a bien été crée"
+            );
 
             // fin 
             return $this->redirectToRoute('show_user', [], Response::HTTP_SEE_OTHER);
@@ -57,6 +62,7 @@ class UserController extends AbstractController
         return $this->renderForm('user/new.html.twig', [
             'user' => $user,
             'form' => $form,
+            'notification'=>$notification
         ]);
     }
 
@@ -89,7 +95,7 @@ class UserController extends AbstractController
             'form' => $form
         ]);
     }
-//daouda
+    //daouda
 
     #[Route('/{id}', name: 'app_user_delete', methods: ['POST'])]
     public function delete(Request $request, User $user, UserRepository $userRepository): Response
