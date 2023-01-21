@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+// use Faker;
 
 #[Route('/user')]
 class UserController extends AbstractController
@@ -38,6 +39,7 @@ class UserController extends AbstractController
     public function new(Request $request, UserRepository $userRepository, entityManagerInterface $manager): Response
     {
         $user = new User();
+    
         $form = $this->createForm(UserType::class, $user);
         $notification = ""; 
         $form->handleRequest($request);
